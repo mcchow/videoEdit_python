@@ -8,6 +8,7 @@ from frameFind import *
 import importlib.util
 import sys
 import os
+import subprocess
 
 
 
@@ -160,6 +161,8 @@ def check_installation(package_name):
     spec = importlib.util.find_spec(package_name)
     if spec is None:
         print(f"{package_name} is not installed.")
+        print(f"Installing {package_name}...")
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package_name])
         return False
     else:
         print(f"{package_name} is installed.")

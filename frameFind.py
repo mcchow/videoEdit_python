@@ -1,6 +1,5 @@
 import cv2
 from skimage.metrics import structural_similarity as ssim
-from sklearn.metrics import mean_squared_error
 
 
 def find_frame_time(image_path, video_path,threshold=0.9,signal=None):

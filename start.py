@@ -162,7 +162,7 @@ def check_installation(package_name):
         return True
 
 # List of packages to check
-packages = ["cv2", "numpy", "pyqt5"]
+packages = ["cv2", "numpy", "pyqt5", "pytube" , "moviepy","scikit-image"]
 
 # Check each package
 for package in packages:

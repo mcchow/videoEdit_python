@@ -57,7 +57,7 @@ def find_frame_time(image_path, video_path,threshold=0.9,signal=None):
         # Calculate SSIM
         ssim_value, _ = ssim(gray_start_image, gray_image2, full=True, win_size=3)
         print(f"SSIM: {ssim_value}")
-        if ssim_value>=0.96:
+        if ssim_value>=0.99:
             match_time = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000  # Convert milliseconds to seconds
             print(f"Template found at {match_time} seconds")
             start_time=match_time

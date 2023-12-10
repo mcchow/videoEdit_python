@@ -9,7 +9,7 @@ def find_frame_time(image_path, video_path,threshold=0.9,signal=None):
     end_time=0
     start_image = cv2.imread(image_path)
     gray_start_image = cv2.cvtColor(start_image, cv2.COLOR_BGR2GRAY)
-    gray_start_image = gray_start_image[:gray_start_image.shape[0]//3, :]
+    gray_start_image = gray_start_image[:gray_start_image.shape[0]//2, :]
     start_image2 = start_image[:start_image.shape[0]//8, :]
     pre =0
 
@@ -39,7 +39,7 @@ def find_frame_time(image_path, video_path,threshold=0.9,signal=None):
 
         # Process the frame (you can save it, display it, etc.)
         gray_image2 = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        gray_image2 = gray_image2[:gray_image2.shape[0]//3, :]
+        gray_image2 = gray_image2[:gray_image2.shape[0]//2, :]
 
         # Calculate the percentage of the video processed
         percentage_processed = ((cap.get(cv2.CAP_PROP_POS_FRAMES) / total_frames) * 100)
@@ -55,7 +55,7 @@ def find_frame_time(image_path, video_path,threshold=0.9,signal=None):
         # Calculate SSIM
         ssim_value, _ = ssim(gray_start_image, gray_image2, full=True)
         print(f"SSIM: {ssim_value}")
-        if ssim_value>=0.95:
+        if ssim_value>=0.97:
             match_time = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000  # Convert milliseconds to seconds
             print(f"Template found at {match_time} seconds")
             start_time=match_time

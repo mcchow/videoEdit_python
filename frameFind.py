@@ -8,8 +8,11 @@ def find_frame_time(image_path, video_path,threshold=0.9,signal=None):
     start_time=0
     end_time=0
     start_image = cv2.imread(image_path)
-    gray_start_image = cv2.cvtColor(start_image, cv2.COLOR_BGR2GRAY)
-    gray_start_image = gray_start_image[:gray_start_image.shape[0]//2, :]
+    gray_start_image = start_image[:start_image.shape[0]//2, :]
+
+    #
+    #
+    #
     start_image2 = start_image[:start_image.shape[0]//8, :]
     pre =0
 
@@ -38,8 +41,7 @@ def find_frame_time(image_path, video_path,threshold=0.9,signal=None):
             break
 
         # Process the frame (you can save it, display it, etc.)
-        gray_image2 = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        gray_image2 = gray_image2[:gray_image2.shape[0]//2, :]
+        gray_image2 = frame[:frame.shape[0]//2, :]
 
         # Calculate the percentage of the video processed
         percentage_processed = ((cap.get(cv2.CAP_PROP_POS_FRAMES) / total_frames) * 100)
@@ -53,9 +55,9 @@ def find_frame_time(image_path, video_path,threshold=0.9,signal=None):
         
         
         # Calculate SSIM
-        ssim_value, _ = ssim(gray_start_image, gray_image2, full=True)
+        ssim_value, _ = ssim(gray_start_image, gray_image2, full=True, win_size=3)
         print(f"SSIM: {ssim_value}")
-        if ssim_value>=0.97:
+        if ssim_value>=0.96:
             match_time = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000  # Convert milliseconds to seconds
             print(f"Template found at {match_time} seconds")
             start_time=match_time
@@ -124,7 +126,6 @@ video_path = 'input.mp4'  # Path to the target video
 threshold = 0.7  # Adjust the threshold based on your needs
 
 find_frame_time(image_path, video_path, threshold)
-#trim_video(input_video_path, output_video_path, start_time, end_time)
 '''
 
 

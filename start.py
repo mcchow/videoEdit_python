@@ -56,6 +56,7 @@ class MyApp(QWidget):
 
             # Construct the path to 'start.png' in the 'image' directory
             image_path = os.path.join(script_directory, 'image', 'start.png')
+            print(image_path)
             video_path = self.file_dest.text()
             if video_path:
                 start_time,end_time=find_frame_time(image_path, video_path,0.9,self.progress_signal2)

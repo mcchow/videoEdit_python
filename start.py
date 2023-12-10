@@ -52,7 +52,10 @@ class MyApp(QWidget):
 
     def on_get_time_clicked(self):
         try:
-            image_path = r'image\start.png'
+            script_directory = os.path.dirname(os.path.abspath(__file__))
+
+            # Construct the path to 'start.png' in the 'image' directory
+            image_path = os.path.join(script_directory, 'image', 'start.png')
             video_path = self.file_dest.text()
             if video_path:
                 start_time,end_time=find_frame_time(image_path, video_path,0.9,self.progress_signal2)
@@ -162,7 +165,7 @@ def check_installation(package_name):
         return True
 
 # List of packages to check
-packages = ["cv2", "numpy", "pyqt5", "pytube" , "moviepy","scikit-image"]
+packages = ["cv2", "numpy", "pyqt5", "pytube" , "moviepy","scikit-learn"]
 
 # Check each package
 for package in packages:

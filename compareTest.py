@@ -1,7 +1,7 @@
 import cv2
 from skimage.metrics import structural_similarity as ssim
 
-image_path = r'D:\github\videoEdit_python\image\start.png'  # Path to the captured frame
+image_path = r'image\start.png'  # Path to the captured frame
 video_path = 'input.mp4'  # Path to the target video
 threshold = 0.7  # Adjust the threshold based on your needs
 capture_time=5614

@@ -9,7 +9,7 @@ import importlib.util
 import sys
 import os
 import subprocess
-
+import gdown
 
 
 
@@ -40,9 +40,13 @@ class MyApp(QWidget):
             url_text = self.url_input.text()
             video_path = self.file_dest.text()
             if url_text and video_path:
+                '''
                 folder_name = os.path.dirname(video_path)
                 file_name = os.path.basename(video_path)
                 download_youtube_video(url_text,folder_name,file_name, self.progress_signal)
+                '''
+                
+                gdown.download(url_text, video_path, quiet=False)
             
         except:
             print('something missing')
@@ -169,7 +173,7 @@ def check_installation(package_name):
         return True
 
 # List of packages to check
-packages = ["cv2", "numpy", "pyqt5", "pytube" , "moviepy","scikit-learn"]
+packages = ["cv2", "numpy", "pyqt5", "gdown" , "moviepy","scikit-learn"]
 
 # Check each package
 for package in packages:
